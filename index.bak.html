@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Olya — Design Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     THEME  —  edit these to fine-tune your colors
+     ============================================================ */
+  :root{
+    --white:#ffffff;
+    --beige:#f4efe6;        /* soft section background */
+    --beige-deep:#ece4d6;   /* stronger beige panels   */
+    --blue:#2b54e6;         /* highlight / accent      */
+    --blue-dark:#1c3bb0;
+    --ink:#17191f;          /* main text               */
+    --muted:#6c6f78;        /* secondary text          */
+    --line:#e7e2d8;         /* hairline borders        */
+    --radius:18px;
+    --maxw:1180px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .accent{color:var(--blue)}
+  .serif{font-family:'Fraunces',Georgia,serif;font-weight:400}
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px clamp(20px,5vw,56px);
+    background:rgba(255,255,255,.82);
+    backdrop-filter:saturate(180%) blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s var(--ease);
+  }
+  header.scrolled{border-bottom:1px solid var(--line)}
+  .logo{
+    display:flex;align-items:center;gap:11px;
+    cursor:pointer;user-select:none;
+  }
+  .logo .mark{
+    width:34px;height:34px;border-radius:9px;
+    background:var(--blue);color:#fff;
+    display:grid;place-items:center;
+    font-weight:700;font-size:16px;letter-spacing:-.5px;
+    transition:transform .35s var(--ease),background .3s;
+  }
+  .logo:hover .mark{transform:rotate(-8deg) scale(1.05)}
+  .logo .name{font-weight:600;font-size:17px;letter-spacing:-.2px}
+  .logo .name span{color:var(--muted);font-weight:400}
+
+  nav{display:flex;align-items:center;gap:6px}
+  nav a{
+    font-size:15px;font-weight:500;color:var(--muted);
+    padding:9px 16px;border-radius:999px;
+    transition:color .2s,background .2s;
+  }
+  nav a:hover{color:var(--ink)}
+  nav a.active{color:var(--blue);background:rgba(43,84,230,.08)}
+
+  .nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:.3s}
+
+  /* ---------- Layout ---------- */
+  main{padding-top:84px;min-height:100vh}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+  .view{animation:fade .55s var(--ease)}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .eyebrow{
+    font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+    color:var(--blue);margin-bottom:20px;
+  }
+
+  /* ---------- Intro / Home ---------- */
+  .hero{padding:clamp(60px,11vw,130px) 0 clamp(48px,7vw,86px)}
+  .hero h1{
+    font-family:'Fraunces',Georgia,serif;font-weight:300;
+    font-size:clamp(42px,7.2vw,92px);line-height:1.03;letter-spacing:-1.5px;
+    max-width:16ch;
+  }
+  .hero h1 em{font-style:italic;color:var(--blue)}
+  .hero .lede{
+    margin-top:30px;font-size:clamp(17px,2.1vw,21px);color:var(--muted);
+    max-width:52ch;
+  }
+  .hero .cta{
+    margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:14px 26px;border-radius:999px;font-weight:600;font-size:15px;
+    transition:transform .25s var(--ease),background .25s,box-shadow .25s;
+  }
+  .btn-primary{background:var(--blue);color:#fff}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(43,84,230,.6)}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .arrow{transition:transform .25s var(--ease)}
+  .btn:hover .arrow{transform:translateX(4px)}
+
+  /* teaser projects */
+  .teaser{background:var(--beige);padding:clamp(56px,8vw,96px) 0;margin-top:20px}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+  .sec-head h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(28px,4vw,44px);letter-spacing:-.8px}
+  .sec-head p{color:var(--muted);max-width:40ch}
+  .link-more{color:var(--blue);font-weight:600;font-size:15px;display:inline-flex;gap:7px;align-items:center}
+  .link-more:hover .arrow{transform:translateX(4px)}
+
+  .teaser-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+  .tcard{
+    background:var(--white);border-radius:var(--radius);overflow:hidden;
+    border:1px solid var(--line);cursor:pointer;
+    transition:transform .4s var(--ease),box-shadow .4s;
+  }
+  .tcard:hover{transform:translateY(-6px);box-shadow:0 24px 50px -24px rgba(20,24,40,.28)}
+  .tcard .thumb{aspect-ratio:16/10;display:grid;place-items:center;position:relative;overflow:hidden}
+  .tcard .thumb .lock{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.9);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:600;display:flex;gap:6px;align-items:center}
+  .tcard .body{padding:22px 24px 26px}
+  .tcard .body .cat{font-size:13px;font-weight:600;color:var(--blue);letter-spacing:.5px}
+  .tcard .body h3{font-size:21px;margin-top:6px;font-weight:600;letter-spacing:-.3px}
+  .tcard .body p{color:var(--muted);font-size:15px;margin-top:8px}
+
+  /* about intro band */
+  .about-intro{padding:clamp(64px,9vw,110px) 0}
+  .about-intro .grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(30px,6vw,72px);align-items:center}
+  .about-intro .portrait{
+    aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;
+    background:var(--beige-deep);position:relative;
+  }
+  .about-intro .portrait .ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:14px;text-align:center;padding:20px}
+  .about-intro h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,4.3vw,50px);line-height:1.1;letter-spacing:-1px}
+  .about-intro p{margin-top:22px;color:var(--muted);font-size:17px;max-width:48ch}
+
+  /* ---------- About page ---------- */
+  .page-head{padding:clamp(48px,7vw,90px) 0 clamp(30px,4vw,50px)}
+  .page-head h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(38px,6vw,74px);letter-spacing:-1.4px;line-height:1.05}
+  .about-body{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(30px,6vw,70px);padding-bottom:clamp(60px,8vw,110px)}
+  .about-body .col-portrait{aspect-ratio:4/5;border-radius:var(--radius);background:var(--beige-deep);position:relative;overflow:hidden}
+  .about-body .col-portrait .ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:14px;text-align:center;padding:20px}
+  .about-body .lead{font-size:clamp(19px,2.4vw,24px);line-height:1.5;font-weight:400}
+  .about-body .lead + p{margin-top:20px;color:var(--muted);font-size:16px}
+  .facts{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .facts h4{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  .facts ul{list-style:none;display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:15px}
+
+  /* ---------- Work page ---------- */
+  .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;padding-bottom:clamp(60px,8vw,110px)}
+  .wcard{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .4s var(--ease),box-shadow .4s}
+  .wcard:hover{transform:translateY(-6px);box-shadow:0 24px 50px -24px rgba(20,24,40,.28)}
+  .wcard .thumb{aspect-ratio:16/10;position:relative;display:grid;place-items:center;overflow:hidden}
+  .wcard .thumb .lock{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.92);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:600;display:flex;gap:6px;align-items:center}
+  .wcard .body{padding:24px 26px 28px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+  .wcard .body .cat{font-size:13px;font-weight:600;color:var(--blue)}
+  .wcard .body h3{font-size:23px;font-weight:600;letter-spacing:-.4px;margin-top:6px}
+  .wcard .body p{color:var(--muted);font-size:15px;margin-top:8px}
+  .wcard .yr{color:var(--muted);font-size:14px;font-variant-numeric:tabular-nums}
+
+  /* ---------- Project detail ---------- */
+  .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-weight:500;font-size:15px;margin-bottom:26px}
+  .back:hover{color:var(--blue)}
+  .back .arrow{transform:rotate(180deg)}
+  .proj-hero{padding-bottom:40px}
+  .proj-hero .cat{color:var(--blue);font-weight:600;font-size:14px;letter-spacing:1px;text-transform:uppercase}
+  .proj-hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(34px,5.5vw,66px);letter-spacing:-1.3px;line-height:1.05;margin-top:14px}
+  .proj-hero .sub{color:var(--muted);font-size:18px;margin-top:18px;max-width:56ch}
+  .proj-meta{display:flex;gap:40px;flex-wrap:wrap;margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
+  .proj-meta div h5{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .proj-meta div p{font-weight:500;font-size:15px}
+  .proj-cover{aspect-ratio:16/9;border-radius:var(--radius);background:var(--beige-deep);margin:40px 0;position:relative;overflow:hidden;display:grid;place-items:center}
+  .proj-cover .ph{color:var(--muted);font-size:14px}
+  .proj-body{max-width:70ch;margin:0 auto;padding-bottom:40px}
+  .proj-body h3{font-family:'Fraunces',serif;font-weight:400;font-size:26px;margin:38px 0 14px;letter-spacing:-.4px}
+  .proj-body p{color:#3d4048;font-size:17px;margin-bottom:18px}
+  .proj-gallery{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-bottom:clamp(60px,8vw,110px)}
+  .proj-gallery .g{aspect-ratio:4/3;border-radius:14px;background:var(--beige);display:grid;place-items:center;color:var(--muted);font-size:13px}
+
+  /* ---------- Password gate ---------- */
+  .gate{max-width:460px;margin:clamp(40px,8vw,90px) auto;text-align:center;padding:clamp(36px,5vw,52px) clamp(28px,4vw,44px);background:var(--beige);border-radius:var(--radius);border:1px solid var(--line)}
+  .gate .ring{width:66px;height:66px;border-radius:50%;background:var(--white);display:grid;place-items:center;margin:0 auto 22px;box-shadow:0 8px 24px -12px rgba(43,84,230,.4)}
+  .gate h2{font-family:'Fraunces',serif;font-weight:400;font-size:28px;letter-spacing:-.5px}
+  .gate p{color:var(--muted);font-size:15px;margin-top:10px}
+  .gate form{margin-top:26px;display:flex;flex-direction:column;gap:12px}
+  .gate input{
+    width:100%;padding:15px 18px;border-radius:12px;border:1px solid var(--line);
+    font-size:16px;font-family:inherit;background:var(--white);text-align:center;letter-spacing:1px;
+    transition:border-color .2s,box-shadow .2s;
+  }
+  .gate input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(43,84,230,.12)}
+  .gate .err{color:#d13232;font-size:14px;min-height:18px;transition:.2s}
+  .gate button{width:100%}
+  .shake{animation:shake .4s}
+  @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+
+  /* ---------- Contact ---------- */
+  .contact{padding-bottom:clamp(60px,8vw,110px)}
+  .contact .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(30px,6vw,70px);align-items:start}
+  .contact h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(36px,5.5vw,64px);letter-spacing:-1.3px;line-height:1.05}
+  .contact .lede{color:var(--muted);font-size:18px;margin-top:20px;max-width:44ch}
+  .contact .links{margin-top:36px;display:flex;flex-direction:column;gap:2px}
+  .contact .links a{display:flex;align-items:center;justify-content:space-between;padding:18px 4px;border-bottom:1px solid var(--line);font-weight:500;font-size:17px;transition:padding .25s var(--ease),color .2s}
+  .contact .links a:hover{padding-left:14px;color:var(--blue)}
+  .contact .links a .arrow{color:var(--blue)}
+  form.cform{background:var(--beige);border-radius:var(--radius);padding:clamp(26px,4vw,38px);display:flex;flex-direction:column;gap:16px}
+  form.cform label{font-size:13px;font-weight:600;letter-spacing:.5px;color:var(--muted);margin-bottom:-8px}
+  form.cform input,form.cform textarea{padding:14px 16px;border-radius:11px;border:1px solid var(--line);font-family:inherit;font-size:15px;background:var(--white);transition:border-color .2s,box-shadow .2s}
+  form.cform input:focus,form.cform textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(43,84,230,.1)}
+  form.cform textarea{resize:vertical;min-height:120px}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line);padding:40px clamp(20px,5vw,56px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+  footer .fl{display:flex;gap:22px;flex-wrap:wrap}
+  footer a:hover{color:var(--blue)}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:820px){
+    nav{position:fixed;top:78px;right:16px;left:16px;flex-direction:column;align-items:stretch;gap:4px;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:0 20px 50px -20px rgba(0,0,0,.25);display:none}
+    nav.open{display:flex;animation:fade .3s var(--ease)}
+    nav a{padding:13px 16px;border-radius:11px}
+    .nav-toggle{display:block}
+    .teaser-grid,.work-grid,.about-intro .grid,.about-body,.contact .grid,.proj-gallery{grid-template-columns:1fr}
+    .facts{grid-template-columns:1fr}
+    .about-body .col-portrait,.about-intro .portrait{max-width:340px}
+  }
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="logo" onclick="go('/')" title="Home">
+    <div class="mark">O</div>
+    <div class="name">Olya <span>· Design</span></div>
+  </div>
+  <button class="nav-toggle" id="toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <nav id="nav">
+    <a href="#/about" data-route="about">About</a>
+    <a href="#/work" data-route="work">Work</a>
+    <a href="#/contact" data-route="contact">Contact</a>
+  </nav>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div>© <span id="yr"></span> Olya. All rights reserved.</div>
+  <div class="fl">
+    <a href="#/about">About</a>
+    <a href="#/work">Work</a>
+    <a href="#/contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   CONFIG  —  edit your content & password here
+   ============================================================ */
+const PASSWORD = "studio2026";   // ← change this to your password
+
+// swatch backgrounds used as placeholders (replace .thumb bg / covers with your images)
+const swatches = [
+  "linear-gradient(135deg,#dfe6ff,#eef2ff)",
+  "linear-gradient(135deg,#efe7d7,#f7f1e6)",
+  "linear-gradient(135deg,#d8e0ff,#e9edff)",
+  "linear-gradient(135deg,#eae2d3,#f4eee2)"
+];
+
+const projects = [
+  {
+    slug:"aurora-brand",
+    title:"Aurora — Brand Identity",
+    cat:"Branding",
+    year:"2025",
+    teaser:"A warm, modern identity system for a boutique wellness studio.",
+    locked:false,
+    role:"Art Direction, Identity",
+    client:"Aurora Studio",
+    scope:"Logo, type, guidelines",
+    intro:"Aurora needed an identity that felt calm and premium without being cold. The system balances a serif wordmark with a soft, warm palette and generous space.",
+    sections:[
+      {h:"The challenge",p:"The studio was rebranding from a generic wellness look to something with real personality. The brief: professional, warm, and unmistakably theirs."},
+      {h:"Approach",p:"I built the identity around a single idea — light at the edge of morning. That informed the palette, the soft gradients, and a wordmark that feels handmade but precise."},
+      {h:"Outcome",p:"A flexible toolkit spanning print, signage, and social. Bookings rose in the first quarter after launch and the brand now reads consistently across every touchpoint."}
+    ]
+  },
+  {
+    slug:"meridian-web",
+    title:"Meridian — Web Design",
+    cat:"Web / UI",
+    year:"2025",
+    teaser:"An editorial marketing site with a focus on typography and pace.",
+    locked:false,
+    role:"Design, Prototyping",
+    client:"Meridian Labs",
+    scope:"Website, design system",
+    intro:"A content-first website where the layout gets out of the way. Big type, quiet color, and motion used sparingly to guide the eye.",
+    sections:[
+      {h:"The challenge",p:"Meridian's old site buried the story under heavy UI. They wanted something that reads like a magazine and converts like a product page."},
+      {h:"Approach",p:"I set a strict type scale, leaned into whitespace, and used a single accent color to mark every action. Every section earns its place."},
+      {h:"Outcome",p:"A calmer, faster site with a reusable component library that the in-house team now extends on their own."}
+    ]
+  },
+  {
+    slug:"north-client",
+    title:"North — Client Work",
+    cat:"Confidential",
+    year:"2024",
+    teaser:"Selected work for a client under NDA. Enter the password to view.",
+    locked:true,
+    role:"Product Design",
+    client:"Under NDA",
+    scope:"App, design system",
+    intro:"A confidential product engagement. This case study covers the research, the interface work, and the results — shared here with permission for reviewers only.",
+    sections:[
+      {h:"Context",p:"This project is protected because it contains pre-release product work. Thanks for keeping it between us."},
+      {h:"What I did",p:"End-to-end product design across onboarding, the core dashboard, and a redesigned settings flow, working closely with two engineers."},
+      {h:"Results",p:"Task completion improved measurably in usability testing, and the new patterns became the foundation for the product's design system."}
+    ]
+  },
+  {
+    slug:"vault-concept",
+    title:"Vault — Concept Project",
+    cat:"Confidential",
+    year:"2024",
+    teaser:"An in-progress concept, password-protected while it's refined.",
+    locked:true,
+    role:"Concept, Visual",
+    client:"Self-initiated",
+    scope:"Concept, motion",
+    intro:"A self-initiated exploration into calmer financial interfaces. Kept private until it's ready to show more widely.",
+    sections:[
+      {h:"The idea",p:"What if a money app felt reassuring instead of anxious? This concept trades dense dashboards for a slower, more human pace."},
+      {h:"Explorations",p:"Several directions for color, motion, and information density — the goal was clarity first, delight second."},
+      {h:"Next",p:"Currently refining the prototype and testing the core flows before a public release."}
+    ]
+  }
+];
+
+/* ============================================================
+   APP  —  routing & rendering (no need to edit below)
+   ============================================================ */
+const app = document.getElementById('app');
+document.getElementById('yr').textContent = new Date().getFullYear();
+const unlocked = () => sessionStorage.getItem('ply_unlocked') === 'yes';
+
+function go(path){ location.hash = '#'+path; }
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function lockBadge(){return '<div class="lock">'+iconLock(13)+' Protected</div>';}
+function iconLock(s){return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';}
+const arrow = '<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+function renderHome(){
+  const teaserCards = projects.slice(0,4).map((p,i)=>`
+    <article class="tcard" onclick="go('/work/${p.slug}')">
+      <div class="thumb" style="background:${swatches[i%swatches.length]}">
+        ${p.locked?lockBadge():''}
+        <span style="font-family:'Fraunces',serif;font-size:30px;color:var(--blue);opacity:.55">${esc(p.title.split(' ')[0])}</span>
+      </div>
+      <div class="body">
+        <div class="cat">${esc(p.cat)}</div>
+        <h3>${esc(p.title)}</h3>
+        <p>${esc(p.teaser)}</p>
+      </div>
+    </article>`).join('');
+
+  return `<div class="view">
+    <section class="hero"><div class="wrap">
+      <div class="eyebrow">Designer · Art Director</div>
+      <h1>Design that feels <em>considered</em>, calm, and made to last.</h1>
+      <p class="lede">I'm Olya — a multidisciplinary designer crafting brands and digital products with clarity, warmth, and a lot of white space.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#/work">View selected work ${arrow}</a>
+        <a class="btn btn-ghost" href="#/contact">Get in touch</a>
+      </div>
+    </div></section>
+
+    <section class="teaser"><div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow" style="margin-bottom:12px">Selected work</div><h2>A few things I've made</h2></div>
+        <a class="link-more" href="#/work">See all projects ${arrow}</a>
+      </div>
+      <div class="teaser-grid">${teaserCards}</div>
+    </div></section>
+
+    <section class="about-intro"><div class="wrap"><div class="grid">
+      <div class="portrait"><div class="ph">Your portrait / hero image goes here</div></div>
+      <div>
+        <div class="eyebrow">About</div>
+        <h2>I help brands look and feel like themselves — only sharper.</h2>
+        <p>Over the past several years I've worked across branding, web, and product design for studios and startups. I care about typography, restraint, and the small details that make work feel finished.</p>
+        <a class="btn btn-ghost" style="margin-top:26px" href="#/about">More about me ${arrow}</a>
+      </div>
+    </div></div></section>
+  </div>`;
+}
+
+function renderAbout(){
+  return `<div class="view"><div class="wrap">
+    <section class="page-head">
+      <div class="eyebrow">About</div>
+      <h1>Designer, art director,<br>and full-time detail person.</h1>
+    </section>
+    <section class="about-body">
+      <div class="col-portrait"><div class="ph">Your portrait image goes here</div></div>
+      <div>
+        <p class="lead">I design brands and digital products that feel calm, confident, and human — with a bias toward clarity and generous white space.</p>
+        <p>My work spans identity systems, editorial websites, and end-to-end product design. I like projects where strategy and craft meet: where a clear idea gets expressed through precise typography, considered color, and motion that means something.</p>
+        <p>When I'm not designing, I'm collecting type specimens, over-analyzing packaging, and chasing good light.</p>
+        <div class="facts">
+          <div><h4>Services</h4><ul><li>Brand identity</li><li>Web & UI design</li><li>Product design</li><li>Art direction</li></ul></div>
+          <div><h4>Toolkit</h4><ul><li>Figma</li><li>Adobe CC</li><li>Framer / Webflow</li><li>Prototyping</li></ul></div>
+        </div>
+        <a class="btn btn-primary" style="margin-top:38px" href="#/contact">Work with me ${arrow}</a>
+      </div>
+    </section>
+  </div></div>`;
+}
+
+function renderWork(){
+  const cards = projects.map((p,i)=>`
+    <article class="wcard" onclick="go('/work/${p.slug}')">
+      <div class="thumb" style="background:${swatches[i%swatches.length]}">
+        ${p.locked?lockBadge():''}
+        <span style="font-family:'Fraunces',serif;font-size:34px;color:var(--blue);opacity:.5">${esc(p.title.split(' ')[0])}</span>
+      </div>
+      <div class="body">
+        <div><div class="cat">${esc(p.cat)}</div><h3>${esc(p.title)}</h3><p>${esc(p.teaser)}</p></div>
+        <div class="yr">${esc(p.year)}</div>
+      </div>
+    </article>`).join('');
+  return `<div class="view"><div class="wrap">
+    <section class="page-head">
+      <div class="eyebrow">Work</div>
+      <h1>Selected projects</h1>
+    </section>
+    <section class="work-grid">${cards}</section>
+  </div></div>`;
+}
+
+function renderProject(slug){
+  const p = projects.find(x=>x.slug===slug);
+  if(!p) return renderNotFound();
+  if(p.locked && !unlocked()) return renderGate(p);
+
+  const gallery = [0,1,2,3].map(n=>`<div class="g">Image ${n+1}</div>`).join('');
+  const body = p.sections.map(s=>`<h3>${esc(s.h)}</h3><p>${esc(s.p)}</p>`).join('');
+  const i = projects.indexOf(p);
+  return `<div class="view"><div class="wrap">
+    <section class="proj-hero" style="padding-top:8px">
+      <a class="back" href="#/work">${arrow} Back to work</a>
+      <div class="cat">${esc(p.cat)}${p.locked?' · Unlocked':''}</div>
+      <h1>${esc(p.title)}</h1>
+      <p class="sub">${esc(p.intro)}</p>
+      <div class="proj-meta">
+        <div><h5>Role</h5><p>${esc(p.role)}</p></div>
+        <div><h5>Client</h5><p>${esc(p.client)}</p></div>
+        <div><h5>Scope</h5><p>${esc(p.scope)}</p></div>
+        <div><h5>Year</h5><p>${esc(p.year)}</p></div>
+      </div>
+    </section>
+    <div class="proj-cover" style="background:${swatches[i%swatches.length]}"><div class="ph">Project cover image</div></div>
+    <section class="proj-body">${body}</section>
+    <section class="proj-gallery">${gallery}</section>
+  </div></div>`;
+}
+
+function renderGate(p){
+  return `<div class="view"><div class="wrap">
+    <div class="gate">
+      <div class="ring" style="color:var(--blue)">${iconLock(24)}</div>
+      <h2>Protected project</h2>
+      <p>“${esc(p.title)}” is password-protected. Enter the password to view the full case study.</p>
+      <form onsubmit="return tryUnlock(event,'${p.slug}')">
+        <input id="pw" type="password" placeholder="Enter password" autocomplete="off" autofocus />
+        <div class="err" id="pwerr"></div>
+        <button class="btn btn-primary" type="submit" style="justify-content:center">Unlock ${arrow}</button>
+      </form>
+      <p style="margin-top:18px;font-size:13px"><a href="#/work" style="color:var(--muted)">← Back to all work</a></p>
+    </div>
+  </div></div>`;
+}
+
+function tryUnlock(e,slug){
+  e.preventDefault();
+  const val = document.getElementById('pw').value;
+  if(val === PASSWORD){
+    sessionStorage.setItem('ply_unlocked','yes');
+    render();
+  }else{
+    const box = document.querySelector('.gate');
+    const err = document.getElementById('pwerr');
+    err.textContent = 'Incorrect password — try again.';
+    box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake');
+  }
+  return false;
+}
+
+function renderNotFound(){
+  return `<div class="view"><div class="wrap"><section class="page-head">
+    <div class="eyebrow">404</div><h1>Page not found</h1>
+    <a class="btn btn-primary" style="margin-top:26px" href="#/">Back home ${arrow}</a>
+  </section></div></div>`;
+}
+
+function renderContact(){
+  return `<div class="view"><div class="wrap">
+    <section class="contact" style="padding-top:clamp(48px,7vw,90px)"><div class="grid">
+      <div>
+        <div class="eyebrow">Contact</div>
+        <h1>Let's make something good.</h1>
+        <p class="lede">Available for select freelance and collaboration work. Tell me a little about your project and I'll get back to you within a couple of days.</p>
+        <div class="links">
+          <a href="mailto:ojaenick@gmail.com">Email <span>ojaenick@gmail.com ${arrow}</span></a>
+          <a href="#/work">LinkedIn <span>/in/olya ${arrow}</span></a>
+          <a href="#/work">Instagram <span>@olya.design ${arrow}</span></a>
+        </div>
+      </div>
+      <form class="cform" onsubmit="return sendMsg(event)">
+        <label>Name</label>
+        <input required placeholder="Your name" />
+        <label>Email</label>
+        <input required type="email" placeholder="you@email.com" />
+        <label>Message</label>
+        <textarea required placeholder="Tell me about your project…"></textarea>
+        <button class="btn btn-primary" type="submit" style="justify-content:center">Send message ${arrow}</button>
+        <div id="sent" style="color:var(--blue);font-size:14px;font-weight:600"></div>
+      </form>
+    </div></section>
+  </div></div>`;
+}
+function sendMsg(e){e.preventDefault();document.getElementById('sent').textContent='Thanks! This demo form isn\'t wired to a server yet — connect it to your email tool of choice.';e.target.reset();return false;}
+
+/* ---- router ---- */
+function setActive(route){
+  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('active',a.dataset.route===route));
+}
+function render(){
+  const hash = location.hash.replace(/^#/,'') || '/';
+  const parts = hash.split('/').filter(Boolean); // [] | ['about'] | ['work'] | ['work','slug'] | ['contact']
+  let html, route='';
+  if(parts.length===0){ html=renderHome(); }
+  else if(parts[0]==='about'){ html=renderAbout(); route='about'; }
+  else if(parts[0]==='work' && parts[1]){ html=renderProject(parts[1]); route='work'; }
+  else if(parts[0]==='work'){ html=renderWork(); route='work'; }
+  else if(parts[0]==='contact'){ html=renderContact(); route='contact'; }
+  else { html=renderNotFound(); }
+  setActive(route);
+  app.innerHTML = html;
+  window.scrollTo({top:0,behavior:'instant'});
+  document.getElementById('nav').classList.remove('open');
+}
+window.addEventListener('hashchange',render);
+window.addEventListener('load',render);
+render();
+
+/* header border on scroll */
+window.addEventListener('scroll',()=>{document.getElementById('hdr').classList.toggle('scrolled',window.scrollY>8);});
+/* mobile menu */
+document.getElementById('toggle').addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));
+</script>
+</body>
+</html>

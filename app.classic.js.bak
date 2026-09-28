@@ -1,0 +1,493 @@
+/* ============================================================
+   CONFIG  —  edit your password here
+   ============================================================ */
+const PASSWORD = "olga2025";   // ← change to your chosen password
+
+const A = "assets/";
+
+/* ============================================================
+   LANGUAGE
+   ============================================================ */
+let lang = localStorage.getItem('oj_lang') || 'en';   // default: English ('en' or 'de')
+
+const T = {
+  en:{
+    nav_work:"Work", nav_about:"About", nav_contact:"Contact", footer_imprint:"Imprint",
+    home_eyebrow:"Olga Jaenick — UX / UI &amp; Product Designer",
+    home_h1:'Design that connects <span class="soft">humans</span> &amp; technology.',
+    home_lede:"I’m Olga — a curious, creative mind who turns chaos into something meaningful. I craft digital products that smoothly connect people with the technology they use every day.",
+    btn_viewwork:"View work", btn_letschat:"Let’s chat",
+    home_selected:"Selected Work", link_allprojects:"All projects",
+    home_about_eyebrow:"About",
+    home_about_h2:"A designer with roots in the Black Forest &amp; Siberia — and a UX mind.",
+    home_about_p:"With a strong eye for beauty and aesthetics, art is more than an interest — it’s an essential part of my life. Since 2022 I’ve studied User Experience Design with a focus on computer science, spiced up with psychology and design.",
+    btn_moreaboutme:"More about me",
+    about_h1:"About", about_hi:"Hi, I’m Olga —",
+    about_p1:"a curious and creative mind who finds joy in making sense of chaos and turning it into something meaningful. Creativity has always been part of me; with a strong eye for beauty and aesthetics, art is more than an interest — it’s an essential part of my life. Spending time in a studio lets me recharge and draw energy from the creative process.",
+    about_p2:'With roots in the <span class="accent">Black Forest and Siberia</span>, I bring a multicultural, open-minded personality shaped by curiosity and the urge to explore the world. I love discovering new places, perspectives and ideas — constantly learning and growing, both as a person and as a designer.',
+    about_p3:'I developed my passion for digital products during agency work on many online projects. As a self-taught learner I’ve focused on UI/UX in recent years, and since 2022 I’ve studied <span class="accent">User Experience Design (Computer Science)</span> at TH Ingolstadt, spiced up with psychology and design. My constant goal is to deepen my understanding of human behavior and craft products that smoothly connect humans with technology.',
+    facts_born_k:"Born", facts_born_v:"22 January 1991 · Idrinskoe, Russia",
+    facts_based_k:"Based", facts_based_v:"Germany",
+    facts_lang_k:"Languages", facts_lang_v:"German &amp; Russian (native), English, French",
+    col_experience:"Experience", col_education:"Education", col_tools:"Tools",
+    exp1_d:"2017 — today", exp1_r:"Freelance Designer", exp1_s:"Graphic · UI/UX · Product",
+    exp2_d:"2019 — 2022", exp2_r:"Schwarz Group / Kaufland", exp2_s:"UI/UX &amp; Product Designer",
+    exp3_d:"2014 — 2017", exp3_r:"Tandem Kommunikation", exp3_s:"Graphic Designer",
+    exp4_d:"2013", exp4_r:"Finest Brand Communication", exp4_s:"Graphic Designer",
+    edu1_d:"2022 — today", edu1_r:"TH Ingolstadt", edu1_s:"UX Design (Computer Science), B.Sc.",
+    edu2_d:"2020", edu2_r:"General Assembly", edu2_s:"UX Design",
+    edu3_d:"2008 — 2011", edu3_r:"Vocational College", edu3_s:"Certified Graphic Designer",
+    btn_workwithme:"Work with me",
+    work_h1:"Work",
+    back_allwork:"All work", meta_role:"Role", meta_scope:"Scope", meta_year:"Year",
+    badge_protected:"Protected",
+    gate_h2:"Protected project",
+    gate_p:'“%s” is password-protected. Enter the password to view the full case study.',
+    gate_input:"Enter password", gate_btn:"Unlock", gate_back:"← Back to all work",
+    gate_err:"Incorrect password — try again.",
+    contact_lets:"Let’s chat!",
+    btn_home:"Back home", imprint_home:"Home", imprint_h1:"Imprint",
+    imp_sub1:"Information according to § 5 TMG",
+    imp_contact:"Contact", imp_phone:"Phone", imp_email:"Email",
+    imp_sub3:"Responsible for content according to § 55 Abs. 2 RStV",
+    imp_h_content:"Liability for content",
+    imp_p_content:"As a service provider, we are responsible for our own content on these pages in accordance with § 7 Abs. 1 TMG under general laws. According to §§ 8 to 10 TMG, we are not obligated as a service provider to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity.",
+    imp_h_links:"Liability for links",
+    imp_p_links:"Our offer contains links to external websites of third parties, on whose content we have no influence. Therefore, we cannot assume any liability for these external contents. The respective provider or operator of the pages is always responsible for the contents of the linked pages.",
+    imp_h_copy:"Copyright",
+    imp_p_copy:"The content and works created by the site operators on these pages are subject to German copyright law. The reproduction, editing, distribution, and any kind of exploitation outside the limits of copyright law require the written consent of the respective author or creator. Downloads and copies of these pages are only permitted for private, non-commercial use.",
+    imp_h_data:"Data protection",
+    imp_p_data:"The use of our website is generally possible without providing personal data. As far as personal data (e.g., name, address, or email addresses) is collected on our pages, this is always done on a voluntary basis, as far as possible. This data will not be passed on to third parties without your explicit consent."
+  },
+  de:{
+    nav_work:"Arbeiten", nav_about:"Über mich", nav_contact:"Kontakt", footer_imprint:"Impressum",
+    home_eyebrow:"Olga Jaenick — UX / UI &amp; Produktdesignerin",
+    home_h1:'Design, das <span class="soft">Menschen</span> &amp; Technologie verbindet.',
+    home_lede:"Ich bin Olga — ein neugieriger, kreativer Kopf, der aus Chaos etwas Sinnvolles macht. Ich gestalte digitale Produkte, die Menschen mühelos mit der Technologie verbinden, die sie täglich nutzen.",
+    btn_viewwork:"Arbeiten ansehen", btn_letschat:"Schreib mir",
+    home_selected:"Ausgewählte Arbeiten", link_allprojects:"Alle Projekte",
+    home_about_eyebrow:"Über mich",
+    home_about_h2:"Eine Designerin mit Wurzeln im Schwarzwald &amp; in Sibirien — und einem UX-Kopf.",
+    home_about_p:"Mit einem ausgeprägten Blick für Schönheit und Ästhetik ist Kunst für mich mehr als ein Interesse — sie ist ein wesentlicher Teil meines Lebens. Seit 2022 studiere ich User Experience Design mit Schwerpunkt Informatik, angereichert mit Psychologie und Design.",
+    btn_moreaboutme:"Mehr über mich",
+    about_h1:"Über mich", about_hi:"Hi, ich bin Olga —",
+    about_p1:"ein neugieriger und kreativer Kopf, der Freude daran hat, Chaos zu ordnen und in etwas Sinnvolles zu verwandeln. Kreativität war schon immer ein Teil von mir; mit einem ausgeprägten Blick für Schönheit und Ästhetik ist Kunst mehr als ein Interesse — sie ist ein wesentlicher Teil meines Lebens. Zeit im Atelier lässt mich auftanken und Energie aus dem kreativen Prozess schöpfen.",
+    about_p2:'Mit Wurzeln im <span class="accent">Schwarzwald und in Sibirien</span> bringe ich eine multikulturelle, weltoffene Persönlichkeit mit, geprägt von Neugier und dem Drang, die Welt zu entdecken. Ich liebe es, neue Orte, Perspektiven und Ideen zu entdecken — und wachse dabei ständig, als Mensch und als Designerin.',
+    about_p3:'Meine Leidenschaft für digitale Produkte habe ich während meiner Agenturzeit an vielen Online-Projekten entwickelt. Als Autodidaktin habe ich mich in den letzten Jahren auf UI/UX fokussiert und studiere seit 2022 <span class="accent">User Experience Design (Informatik)</span> an der TH Ingolstadt, angereichert mit Psychologie und Design. Mein ständiges Ziel ist es, menschliches Verhalten besser zu verstehen und Produkte zu gestalten, die Menschen mühelos mit Technologie verbinden.',
+    facts_born_k:"Geboren", facts_born_v:"22. Januar 1991 · Idrinskoe, Russland",
+    facts_based_k:"Wohnort", facts_based_v:"Deutschland",
+    facts_lang_k:"Sprachen", facts_lang_v:"Deutsch &amp; Russisch (Muttersprache), Englisch, Französisch",
+    col_experience:"Erfahrung", col_education:"Ausbildung", col_tools:"Tools",
+    exp1_d:"2017 — heute", exp1_r:"Freiberufliche Designerin", exp1_s:"Grafik · UI/UX · Produkt",
+    exp2_d:"2019 — 2022", exp2_r:"Schwarz Gruppe / Kaufland", exp2_s:"UI/UX- &amp; Produktdesignerin",
+    exp3_d:"2014 — 2017", exp3_r:"Tandem Kommunikation", exp3_s:"Grafikdesignerin",
+    exp4_d:"2013", exp4_r:"Finest Brand Communication", exp4_s:"Grafikdesignerin",
+    edu1_d:"2022 — heute", edu1_r:"TH Ingolstadt", edu1_s:"UX Design (Informatik), B.Sc.",
+    edu2_d:"2020", edu2_r:"General Assembly", edu2_s:"UX Design",
+    edu3_d:"2008 — 2011", edu3_r:"Berufskolleg", edu3_s:"Staatl. gepr. Grafikdesignerin",
+    btn_workwithme:"Zusammenarbeiten",
+    work_h1:"Arbeiten",
+    back_allwork:"Alle Arbeiten", meta_role:"Rolle", meta_scope:"Umfang", meta_year:"Jahr",
+    badge_protected:"Geschützt",
+    gate_h2:"Geschütztes Projekt",
+    gate_p:'„%s“ ist passwortgeschützt. Gib das Passwort ein, um die vollständige Case Study zu sehen.',
+    gate_input:"Passwort eingeben", gate_btn:"Freischalten", gate_back:"← Zurück zu allen Arbeiten",
+    gate_err:"Falsches Passwort — bitte erneut versuchen.",
+    contact_lets:"Sprechen wir!",
+    btn_home:"Zur Startseite", imprint_home:"Startseite", imprint_h1:"Impressum",
+    imp_sub1:"Angaben gemäß § 5 TMG",
+    imp_contact:"Kontakt", imp_phone:"Telefon", imp_email:"E-Mail",
+    imp_sub3:"Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
+    imp_h_content:"Haftung für Inhalte",
+    imp_p_content:"Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.",
+    imp_h_links:"Haftung für Links",
+    imp_p_links:"Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.",
+    imp_h_copy:"Urheberrecht",
+    imp_p_copy:"Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.",
+    imp_h_data:"Datenschutz",
+    imp_p_data:"Die Nutzung unserer Website ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (z. B. Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben."
+  }
+};
+function t(k){ return (T[lang] && T[lang][k]!==undefined) ? T[lang][k] : T.en[k]; }
+
+/* ============================================================
+   PROJECTS  (base = English, .de = German overrides)
+   ============================================================ */
+const projects = [
+  {
+    slug:"kaufland", title:"Kaufland", year:"2019–2022", locked:true,
+    cover:A+"Kaufland/web/kaufland-hero.jpg",
+    hero:A+"Kaufland/web/kaufland-hero.jpg",
+    slider:[A+"Kaufland/web/01b.jpg",A+"Kaufland/web/01c.jpg",A+"Kaufland/web/01d.jpg",A+"Kaufland/web/01e.jpg",A+"Kaufland/web/01f.jpg",A+"Kaufland/web/01g.jpg",A+"Kaufland/web/01h.jpg"],
+    gallery:[A+"pg-06.jpg",A+"pg-07.jpg"],
+    cat:"UI / UX · Product Design",
+    role:"Designer & Usability Conceptor, Art Direction, Usability Testing, Quality Assurance",
+    scope:"Interface design concept, atomic design library, onboarding, information architecture, registration & login, store finder, loyalty & coupons, mobile self-scanning, offers, shopping list, prototyping",
+    lead:"Kaufland — part of the Schwarz Group, which also owns Lidl — is the largest European retailer and the fourth-largest in the world by revenue, operating over 1,200 stores across eight countries.",
+    body:"I designed across the Kaufland mobile app, shaping the overall interface concept and building an atomic design library to keep the product consistent at scale. My work spanned onboarding, information architecture, the loyalty and coupon program, mobile self-scanning, the offer stream and shopping list — from low-fidelity user flows through high-fidelity prototypes and usability testing.",
+    de:{
+      cat:"UI / UX · Produktdesign",
+      role:"Designerin & Usability-Konzeption, Art Direction, Usability-Testing, Qualitätssicherung",
+      scope:"Interface-Design-Konzept, Atomic-Design-Library, Onboarding, Informationsarchitektur, Registrierung & Login, Filialfinder, Treue & Coupons, mobiles Self-Scanning, Angebote, Einkaufsliste, Prototyping",
+      lead:"Kaufland — Teil der Schwarz Gruppe, zu der auch Lidl gehört — ist der größte europäische Einzelhändler und weltweit die Nummer vier nach Umsatz, mit über 1.200 Filialen in acht Ländern.",
+      body:"Ich habe die Kaufland-App gestaltet, das übergreifende Interface-Konzept entwickelt und eine Atomic-Design-Library aufgebaut, um das Produkt konsistent zu skalieren. Meine Arbeit umfasste Onboarding, Informationsarchitektur, das Treue- und Coupon-Programm, mobiles Self-Scanning, den Angebots-Stream und die Einkaufsliste — von Low-Fidelity-User-Flows über High-Fidelity-Prototypen bis zum Usability-Testing."
+    }
+  },
+  {
+    slug:"leser", title:"Leser Packaging", year:"2016", locked:false,
+    cover:A+"pg-09.jpg", hero:A+"pg-09.jpg", gallery:[A+"pg-09.jpg",A+"pg-10.jpg"],
+    cat:"Web · UX Design",
+    role:"Designer, Consulting, Co-Art Direction, Quality Assurance",
+    scope:"Website redesign, UI/UX, creation of a new visual style and key visual",
+    lead:"The LESER Group globally produces over 70 million packaging and display items a year — for jewelry, writing instruments, watches, cosmetics, optics, electronics and special articles.",
+    body:"I led the redesign of the LESER website, reworking the UI and UX and creating a new visual style and key visual to present their premium packaging craft with clarity and confidence.",
+    de:{
+      cat:"Web · UX Design",
+      role:"Designerin, Beratung, Co-Art-Direction, Qualitätssicherung",
+      scope:"Website-Redesign, UI/UX, Entwicklung eines neuen visuellen Stils und Key Visuals",
+      lead:"Die LESER-Group produziert weltweit über 70 Millionen Verpackungs- und Display-Artikel pro Jahr — für Schmuck, Schreibgeräte, Uhren, Kosmetik, Optik, Elektronik und Sonderartikel.",
+      body:"Ich habe das Redesign der LESER-Website geleitet, UI und UX überarbeitet und einen neuen visuellen Stil sowie ein Key Visual entwickelt, um ihr hochwertiges Verpackungshandwerk klar und selbstbewusst zu präsentieren."
+    }
+  },
+  {
+    slug:"heimerle-meule", title:"Heimerle + Meule", year:"2016–2017", locked:true,
+    cover:A+"pg-12.jpg", hero:A+"pg-12.jpg", gallery:[A+"pg-12.jpg",A+"pg-13.jpg"],
+    cat:"Web · UX Design",
+    role:"Designer, Co-Art Direction, Quality Assurance",
+    scope:"Website redesign, UI/UX, key visual concept",
+    lead:"Founded in 1845 in the gold city of Pforzheim, HEIMERLE + MEULE is Germany’s oldest gold and silver refinery and one of the leading European full-range suppliers in precious-metal processing.",
+    body:"I redesigned the website and developed the key visual concept, translating a 175-year heritage brand into a clean, contemporary digital presence while keeping its sense of precision and value.",
+    de:{
+      cat:"Web · UX Design",
+      role:"Designerin, Co-Art-Direction, Qualitätssicherung",
+      scope:"Website-Redesign, UI/UX, Key-Visual-Konzept",
+      lead:"1845 in der Goldstadt Pforzheim gegründet, ist HEIMERLE + MEULE die älteste Gold- und Silberscheideanstalt Deutschlands und einer der führenden europäischen Vollsortimenter in der Edelmetallverarbeitung.",
+      body:"Ich habe die Website neu gestaltet und das Key-Visual-Konzept entwickelt — eine 175 Jahre alte Traditionsmarke in einen klaren, zeitgemäßen digitalen Auftritt übersetzt, ohne ihr Gefühl von Präzision und Wert zu verlieren."
+    }
+  },
+  {
+    slug:"doll", title:"Doll Fahrzeugbau", year:"2016–2017", locked:false,
+    cover:A+"pg-15.jpg", hero:A+"pg-15.jpg", gallery:[A+"pg-15.jpg",A+"pg-16.jpg"],
+    cat:"Corporate · Editorial Design",
+    role:"Designer, Co-Art Direction",
+    scope:"Corporate design redesign, corporate image & product brochures, business stationery, image editing & post-production",
+    lead:"Founded in the Black Forest in 1878, DOLL Fahrzeugbau builds technically superior vehicles for timber transport, heavy haulage, ground support and public-authority sectors the world over.",
+    body:"I redesigned the corporate design and conceived the corporate image and product brochures, co-created business stationery, and handled image editing and post-production across the system.",
+    de:{
+      cat:"Corporate · Editorial Design",
+      role:"Designerin, Co-Art-Direction",
+      scope:"Corporate-Design-Redesign, Imagebroschüre & Produktbroschüren, Geschäftsausstattung, Bildbearbeitung & Postproduktion",
+      lead:"1878 im Schwarzwald gegründet, baut DOLL Fahrzeugbau technisch überlegene Fahrzeuge für Holztransport, Schwerlast, Ground Support und den Behördenbereich — weltweit im Einsatz.",
+      body:"Ich habe das Corporate Design überarbeitet, die Imagebroschüre und Produktbroschüren konzipiert, die Geschäftsausstattung mitgestaltet und die Bildbearbeitung sowie Postproduktion im gesamten System übernommen."
+    }
+  },
+  {
+    slug:"colordruck", title:"Colordruck Baiersbronn", year:"2016", locked:false,
+    cover:A+"pg-18.jpg", hero:A+"pg-18.jpg", gallery:[A+"pg-18.jpg",A+"pg-19.jpg"],
+    cat:"Corporate · Editorial · Publishing",
+    role:"Designer, Co-Art Direction",
+    scope:"Corporate design & guidelines, corporate brochure & journal, business stationery",
+    lead:"One of the technological leaders in Europe, Colordruck Baiersbronn offers customized packaging solutions for the food, confectionery, pharmaceutical and non-food sectors.",
+    body:"I developed the corporate design and guidelines and designed the corporate brochure and journal alongside a refreshed suite of business stationery.",
+    de:{
+      cat:"Corporate · Editorial · Publishing",
+      role:"Designerin, Co-Art-Direction",
+      scope:"Corporate Design & Guidelines, Imagebroschüre & Journal, Geschäftsausstattung",
+      lead:"Als einer der technologischen Marktführer in Europa bietet Colordruck Baiersbronn maßgeschneiderte Verpackungslösungen für die Bereiche Food, Confectionery, Pharma und Non-Food.",
+      body:"Ich habe das Corporate Design und die Guidelines entwickelt und die Imagebroschüre sowie das Journal gestaltet — ergänzt durch eine überarbeitete Geschäftsausstattung."
+    }
+  }
+];
+function pl(p,f){ return (lang==='de' && p.de && p.de[f]!==undefined) ? p.de[f] : p[f]; }
+
+/* ============================================================
+   APP
+   ============================================================ */
+const app = document.getElementById('app');
+document.getElementById('yr').textContent = new Date().getFullYear();
+const unlocked = () => sessionStorage.getItem('oj_unlocked') === 'yes';
+function go(path){ location.hash = '#'+path; }
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function slideMove(id,dir){var el=document.getElementById(id);if(el)el.scrollBy({left:dir*el.clientWidth,behavior:'smooth'});}
+
+const arrow = '<svg class="arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+function iconLock(s){return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';}
+const icBehance='<svg viewBox="0 0 24 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.94695 0.00138525C7.59544 -0.010655 8.243 0.0558297 8.87551 0.199389C9.40806 0.315658 9.91367 0.532016 10.3655 0.836961C10.7828 1.1402 11.1129 1.54786 11.3228 2.01904C11.5641 2.59844 11.6805 3.22218 11.6644 3.84959C11.6918 4.53849 11.5158 5.22022 11.1585 5.80983C10.7825 6.36669 10.2629 6.81142 9.65465 7.09685C10.4801 7.31938 11.199 7.82911 11.6822 8.53436C12.1461 9.28163 12.3792 10.1491 12.3524 11.0282C12.3677 11.7291 12.2228 12.4243 11.9287 13.0607C11.6569 13.6159 11.2588 14.0997 10.7664 14.4735C10.2595 14.8431 9.68905 15.1166 9.08341 15.2803C8.45535 15.4541 7.80651 15.5414 7.15486 15.5397H0V0.00138525H6.94695ZM6.53412 6.28603C7.04364 6.30703 7.54521 6.1545 7.95677 5.85339C8.15388 5.67792 8.30721 5.45877 8.4045 5.21347C8.5018 4.96816 8.54037 4.7035 8.51712 4.44063C8.53031 4.13361 8.46918 3.82794 8.33892 3.54961C8.22842 3.32801 8.05661 3.1428 7.84391 3.01599C7.62848 2.87642 7.38643 2.78304 7.13308 2.74176C6.85818 2.68851 6.57845 2.66428 6.29849 2.66949H3.24132V6.29989H6.53412V6.28603ZM6.71232 12.9013C7.02046 12.9055 7.32796 12.8723 7.62809 12.8023C7.90236 12.7418 8.16247 12.6292 8.39436 12.4707C8.62153 12.3123 8.80506 12.0991 8.92798 11.8509C9.0705 11.5345 9.13598 11.1887 9.11905 10.8421C9.14995 10.5262 9.10811 10.2074 8.99674 9.91019C8.88537 9.61296 8.70742 9.34519 8.47653 9.12738C7.98717 8.76694 7.38745 8.58839 6.78063 8.62247H3.24132V12.9013H6.71232Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16.9689 12.8438C17.2233 13.0796 17.523 13.2613 17.8497 13.3777C18.1765 13.4941 18.5235 13.5428 18.8697 13.521C19.4185 13.5349 19.9567 13.3679 20.4013 13.0458C20.7629 12.8106 21.0368 12.4626 21.1804 12.0558H23.7653C23.4899 13.2139 22.8173 14.2389 21.8645 14.9526C20.9504 15.5593 19.8702 15.8665 18.7737 15.8317C17.9911 15.842 17.2144 15.6949 16.4897 15.3991C15.8342 15.1257 15.2463 14.7125 14.7671 14.1883C14.2897 13.639 13.9229 13.0026 13.687 12.3142C13.4221 11.5446 13.2925 10.7351 13.3038 9.9213C13.299 9.12118 13.433 8.3263 13.6998 7.57198C14.0583 6.51079 14.7438 5.59045 15.6578 4.94302C16.5719 4.2956 17.6675 3.95437 18.7875 3.96831C19.6144 3.95103 20.4321 4.14455 21.1636 4.53064C21.8247 4.89319 22.3951 5.40093 22.8318 6.01567C23.2784 6.66072 23.5986 7.3847 23.7752 8.14916C23.969 8.97005 24.0381 9.81543 23.9802 10.6569H16.2808C16.2184 11.4474 16.4651 12.2314 16.9689 12.8438ZM20.3468 6.93441C20.1314 6.7189 19.8722 6.55208 19.5868 6.44517C19.3015 6.33826 18.9965 6.29376 18.6925 6.31466C18.2892 6.29927 17.8887 6.38864 17.5302 6.57404C17.246 6.73051 16.9951 6.94105 16.7917 7.19379C16.6114 7.43076 16.4771 7.6994 16.3957 7.98581C16.3223 8.22468 16.2765 8.47114 16.259 8.72041H21.0279C20.9864 8.07061 20.7497 7.44848 20.3488 6.9354L20.3468 6.93441Z"/><path d="M15.6443 1.03887H21.62V2.56647H15.6443V1.03887Z"/></svg>';
+const icLinkedin='<svg viewBox="0 0 17 17" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.0391 5.31152C13.1781 5.3197 13.3174 5.32837 13.4482 5.34473C15.7152 5.59039 17 7.08038 17 9.60938V17H13.4482V10.3945C13.4482 10.2298 13.4061 8.45508 11.4424 8.45508C10.7795 8.45515 10.1907 8.74971 9.86328 9.33887C9.47859 10.0428 9.53516 10.8615 9.53516 11.6309V16.9512H5.9834V5.62305H9.37988V7.13672C9.38277 7.13194 9.43203 7.05088 9.53516 6.91602C9.92803 6.40855 11.0501 5.22967 13.0391 5.31152ZM3.83887 16.918H0.287109V5.58984H3.83887V16.918ZM2.0625 0C3.20161 0 4.12495 0.923405 4.125 2.0625C4.125 3.20164 3.20164 4.125 2.0625 4.125C0.923403 4.12495 0 3.20161 0 2.0625C4.75432e-05 0.923433 0.923432 4.53532e-05 2.0625 0Z"/></svg>';
+const icMail='<svg viewBox="0 0 20 15" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.167 13.0166C19.1669 14.0055 18.3631 14.8398 17.3428 14.8398H1.82422C0.83525 14.8398 0.000136415 14.0369 0 13.0166V2.56641L9.21289 9.83203C9.30587 9.9238 9.46082 9.95508 9.58398 9.95508C9.70712 9.95506 9.83193 9.92499 9.95508 9.83203L19.168 2.56641L19.167 13.0166ZM17.3447 0C18.086 7.25227e-05 18.7359 0.463791 19.0137 1.11328L9.58398 8.56348L0.155273 1.11328C0.433132 0.463809 1.08292 0 1.82422 0H17.3447Z"/></svg>';
+
+function pcard(p){
+  return `<a class="pcard" onclick="go('/work/${p.slug}')">
+    <div class="frame">
+      <img src="${p.cover}" alt="${esc(p.title)}" loading="lazy"/>
+      ${p.locked?`<div class="lock">${iconLock(12)} ${t('badge_protected')}</div>`:''}
+    </div>
+    <div class="meta">
+      <div><h3>${esc(p.title)}</h3><div class="cat">${esc(pl(p,'cat'))}</div></div>
+      <div class="yr">${esc(p.year)}</div>
+    </div>
+  </a>`;
+}
+
+function renderHome(){
+  const teaser = projects.slice(0,4).map(pcard).join('');
+  return `<div class="view">
+    <section class="hero"><div class="wrap">
+      <div class="eyebrow">${t('home_eyebrow')}</div>
+      <h1 class="display">${t('home_h1')}</h1>
+      <p class="lede">${t('home_lede')}</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#/work">${t('btn_viewwork')} ${arrow}</a>
+        <a class="btn btn-ghost" href="#/contact">${t('btn_letschat')}</a>
+      </div>
+    </div></section>
+
+    <section class="section wash"><div class="wrap">
+      <div class="sec-head"><h2>${t('home_selected')}</h2><a class="link-more" href="#/work">${t('link_allprojects')} ${arrow}</a></div>
+      <div class="grid2">${teaser}</div>
+    </div></section>
+
+    <section class="section intro-band"><div class="wrap"><div class="grid">
+      <div class="portrait"><img src="${A}portrait.jpg" alt="Olga Jaenick"/></div>
+      <div>
+        <div class="eyebrow">${t('home_about_eyebrow')}</div>
+        <h2>${t('home_about_h2')}</h2>
+        <p>${t('home_about_p')}</p>
+        <a class="btn btn-ghost" style="margin-top:28px" href="#/about">${t('btn_moreaboutme')} ${arrow}</a>
+      </div>
+    </div></div></section>
+  </div>`;
+}
+
+function renderAbout(){
+  return `<div class="view"><div class="wrap">
+    <section class="page-head"><h1>${t('about_h1')}</h1></section>
+    <section class="about-grid">
+      <div class="portrait"><img src="${A}portrait.jpg" alt="Olga Jaenick"/></div>
+      <div>
+        <div class="hi">${t('about_hi')}</div>
+        <p>${t('about_p1')}</p>
+        <p>${t('about_p2')}</p>
+        <p>${t('about_p3')}</p>
+        <div class="facts-row">
+          <div><div class="k">${t('facts_born_k')}</div><div class="v">${t('facts_born_v')}</div></div>
+          <div><div class="k">${t('facts_based_k')}</div><div class="v">${t('facts_based_v')}</div></div>
+          <div><div class="k">${t('facts_lang_k')}</div><div class="v">${t('facts_lang_v')}</div></div>
+        </div>
+
+        <div class="cols">
+          <div>
+            <h4>${t('col_experience')}</h4>
+            <ul>
+              <li><div class="d">${t('exp1_d')}</div><div class="r">${t('exp1_r')}</div><div class="s">${t('exp1_s')}</div></li>
+              <li><div class="d">${t('exp2_d')}</div><div class="r">${t('exp2_r')}</div><div class="s">${t('exp2_s')}</div></li>
+              <li><div class="d">${t('exp3_d')}</div><div class="r">${t('exp3_r')}</div><div class="s">${t('exp3_s')}</div></li>
+              <li><div class="d">${t('exp4_d')}</div><div class="r">${t('exp4_r')}</div><div class="s">${t('exp4_s')}</div></li>
+            </ul>
+          </div>
+          <div>
+            <h4>${t('col_education')}</h4>
+            <ul>
+              <li><div class="d">${t('edu1_d')}</div><div class="r">${t('edu1_r')}</div><div class="s">${t('edu1_s')}</div></li>
+              <li><div class="d">${t('edu2_d')}</div><div class="r">${t('edu2_r')}</div><div class="s">${t('edu2_s')}</div></li>
+              <li><div class="d">${t('edu3_d')}</div><div class="r">${t('edu3_r')}</div><div class="s">${t('edu3_s')}</div></li>
+            </ul>
+          </div>
+          <div>
+            <h4>${t('col_tools')}</h4>
+            <div class="tags">
+              <span>Figma</span><span>Sketch</span><span>Adobe CC</span><span>Photoshop</span><span>Illustrator</span><span>InDesign</span><span>After Effects</span><span>Houdini</span><span>HTML / CSS</span><span>VS Code</span>
+            </div>
+          </div>
+        </div>
+        <a class="btn btn-primary" style="margin-top:44px" href="#/contact">${t('btn_workwithme')} ${arrow}</a>
+      </div>
+    </section>
+  </div></div>`;
+}
+
+function renderWork(){
+  return `<div class="view"><div class="wrap">
+    <section class="page-head"><h1>${t('work_h1')}</h1></section>
+    <section class="work-grid">${projects.map(pcard).join('')}</section>
+  </div></div>`;
+}
+
+function renderProject(slug){
+  const p = projects.find(x=>x.slug===slug);
+  if(!p) return renderNotFound();
+  if(p.locked && !unlocked()) return renderGate(p);
+  const i = projects.indexOf(p);
+  const next = projects[(i+1)%projects.length];
+  const prev = projects[(i-1+projects.length)%projects.length];
+  let media;
+  if(p.slider && p.slider.length){
+    const sid = 'slides-'+p.slug;
+    const slides = p.slider.map(src=>`<img src="${src}" alt="${esc(p.title)}" loading="lazy"/>`).join('');
+    media = `<section class="slider">
+      <div class="slides" id="${sid}">${slides}</div>
+      <button class="s-btn s-prev" aria-label="Previous" onclick="slideMove('${sid}',-1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <button class="s-btn s-next" aria-label="Next" onclick="slideMove('${sid}',1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+    </section>`;
+  } else {
+    const gallery = p.gallery.map(src=>`<img src="${src}" alt="${esc(p.title)}" loading="lazy"/>`).join('');
+    media = `<section class="proj-gallery">${gallery}</section>`;
+  }
+
+  const meta = `<div class="proj-meta">
+        <div><div class="k">${t('meta_role')}</div><div class="v">${esc(pl(p,'role'))}</div></div>
+        <div><div class="k">${t('meta_scope')}</div><div class="v">${esc(pl(p,'scope'))}</div></div>
+        <div><div class="k">${t('meta_year')}</div><div class="v">${esc(p.year)}</div></div>
+      </div>`;
+
+  const heroSection = p.hero ? `
+    <section class="proj-hero-full" style="background-image:url('${p.hero}')">
+      <div class="proj-hero-inner">
+        <a class="back on-hero" href="#/work">${arrow} ${t('back_allwork')}</a>
+        <div class="proj-hero-text">
+          <div class="cat on-hero">${esc(pl(p,'cat'))}</div>
+          <h1 class="proj-title"><span class="mark">${esc(p.title)}</span></h1>
+        </div>
+      </div>
+    </section>` : '';
+
+  const head = p.hero ? `
+    <section class="page-head" style="padding-top:clamp(34px,5vw,64px);padding-bottom:0">
+      <p class="proj-lead">${esc(pl(p,'lead'))}</p>
+      ${meta}
+      <p class="proj-lead" style="font-size:17px;color:#4a4b50;max-width:70ch">${esc(pl(p,'body'))}</p>
+    </section>` : `
+    <section class="page-head" style="padding-bottom:0">
+      <a class="back" href="#/work">${arrow} ${t('back_allwork')}</a>
+      <div class="proj-head">
+        <div class="cat">${esc(pl(p,'cat'))}</div>
+        <h1>${esc(p.title)}</h1>
+      </div>
+      <p class="proj-lead">${esc(pl(p,'lead'))}</p>
+      ${meta}
+      <p class="proj-lead" style="font-size:17px;color:#4a4b50;max-width:70ch">${esc(pl(p,'body'))}</p>
+    </section>`;
+
+  return `<div class="view">
+    ${heroSection}
+    <div class="wrap">
+      ${head}
+      ${media}
+      <div class="proj-nav">
+        <a class="link-more" href="#/work/${prev.slug}"><span style="transform:rotate(180deg);display:inline-flex">${arrow}</span> ${esc(prev.title)}</a>
+        <a class="link-more" href="#/work/${next.slug}">${esc(next.title)} ${arrow}</a>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderGate(p){
+  return `<div class="view"><div class="wrap">
+    <div class="gate">
+      <div class="ico">${iconLock(24)}</div>
+      <h2>${t('gate_h2')}</h2>
+      <p>${t('gate_p').replace('%s', esc(p.title))}</p>
+      <form onsubmit="return tryUnlock(event)">
+        <input id="pw" type="password" placeholder="${t('gate_input')}" autocomplete="off" autofocus />
+        <div class="err" id="pwerr"></div>
+        <button class="btn btn-primary" type="submit">${t('gate_btn')} ${arrow}</button>
+      </form>
+      <p style="margin-top:16px;font-size:13px"><a href="#/work" style="color:var(--muted)">${t('gate_back')}</a></p>
+    </div>
+  </div></div>`;
+}
+function tryUnlock(e){
+  e.preventDefault();
+  if(document.getElementById('pw').value === PASSWORD){
+    sessionStorage.setItem('oj_unlocked','yes'); render();
+  }else{
+    const g=document.querySelector('.gate');
+    document.getElementById('pwerr').textContent=t('gate_err');
+    g.classList.remove('shake'); void g.offsetWidth; g.classList.add('shake');
+  }
+  return false;
+}
+
+function renderContact(){
+  return `<div class="view"><div class="wrap">
+    <section class="contact">
+      <div class="lets display">${t('contact_lets')}</div>
+      <a class="big email" href="mailto:ojaenick@icloud.com">ojaenick@icloud.com</a>
+      <a class="big phone" href="tel:+4915901602716">+49 159 0160 2716</a>
+      <div class="socials">
+        <a href="https://www.behance.net/" target="_blank" rel="noopener" aria-label="Behance">${icBehance}</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">${icLinkedin}</a>
+        <a href="mailto:ojaenick@icloud.com" aria-label="Email">${icMail}</a>
+      </div>
+    </section>
+  </div></div>`;
+}
+
+function renderImprint(){
+  return `<div class="view"><div class="wrap">
+    <section class="page-head" style="padding-bottom:16px">
+      <a class="back" href="#/">${arrow} ${t('imprint_home')}</a>
+      <h1>${t('imprint_h1')}</h1>
+    </section>
+    <section class="legal">
+      <div class="block">
+        <div class="sub">${t('imp_sub1')}</div>
+        <address>Olga Jaenick<br>Am Bachl 43<br>85049 Ingolstadt<br>${lang==='de'?'Deutschland':'Germany'}</address>
+      </div>
+      <div class="block">
+        <div class="sub">${t('imp_contact')}</div>
+        <p>${t('imp_phone')}: <a href="tel:+4915901602716">+49 (0) 159 0160 2716</a><br>
+        ${t('imp_email')}: <a href="mailto:ojaenick@icloud.com">ojaenick@icloud.com</a></p>
+      </div>
+      <div class="block">
+        <div class="sub">${t('imp_sub3')}</div>
+        <address>Olga Jaenick<br>Am Bachl 43<br>85049 Ingolstadt<br>${lang==='de'?'Deutschland':'Germany'}</address>
+      </div>
+      <div class="block"><h2>${t('imp_h_content')}</h2><p>${t('imp_p_content')}</p></div>
+      <div class="block"><h2>${t('imp_h_links')}</h2><p>${t('imp_p_links')}</p></div>
+      <div class="block"><h2>${t('imp_h_copy')}</h2><p>${t('imp_p_copy')}</p></div>
+      <div class="block"><h2>${t('imp_h_data')}</h2><p>${t('imp_p_data')}</p></div>
+    </section>
+  </div></div>`;
+}
+
+function renderNotFound(){
+  return `<div class="view"><div class="wrap"><section class="page-head"><h1>404</h1>
+    <a class="btn btn-primary" href="#/">${t('btn_home')} ${arrow}</a></section></div></div>`;
+}
+
+/* ---- language chrome (nav + footer) ---- */
+function applyChrome(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('nav.main a[data-route]').forEach(a=>{ a.textContent = t('nav_'+a.dataset.route); });
+  const imp = document.getElementById('imprintlink'); if(imp) imp.textContent = t('footer_imprint');
+  document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+}
+function setLang(l){
+  if(l===lang) return;
+  lang = l; localStorage.setItem('oj_lang', l);
+  applyChrome(); render();
+}
+
+/* ---- router ---- */
+function setActive(route){document.querySelectorAll('nav.main a').forEach(a=>a.classList.toggle('active',a.dataset.route===route));}
+function render(){
+  const hash=location.hash.replace(/^#/,'')||'/';
+  const parts=hash.split('/').filter(Boolean);
+  let html,route='';
+  if(parts.length===0){html=renderHome();}
+  else if(parts[0]==='about'){html=renderAbout();route='about';}
+  else if(parts[0]==='work'&&parts[1]){html=renderProject(parts[1]);route='work';}
+  else if(parts[0]==='work'){html=renderWork();route='work';}
+  else if(parts[0]==='contact'){html=renderContact();route='contact';}
+  else if(parts[0]==='imprint'){html=renderImprint();}
+  else{html=renderNotFound();}
+  setActive(route);
+  app.innerHTML=html;
+  window.scrollTo({top:0,behavior:'instant'});
+}
+document.querySelectorAll('#lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+window.addEventListener('hashchange',render);
+applyChrome();
+render();
+window.addEventListener('scroll',()=>document.getElementById('hdr').classList.toggle('scrolled',window.scrollY>8));
